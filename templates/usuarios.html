@@ -1,0 +1,33 @@
+{%extends 'index.html' %}
+    {% block main %}
+    {{ super()}}
+            <title>{% block title %}Usuarios{% endblock title %} </title>
+            <h1>Usuarios</h1>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+                {% for u in usuarios %}
+                
+                <tr>
+                    <td><b>{{u.nome}}</b>
+                    </td><td>{{u.email}}</td>
+                    <td>
+                        <button>Alterar</button>
+                        <form action="/usuarios/delete?email={{u.email}}" method="post" style="display:inline">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>    
+                
+                {% endfor %}
+                {% if not usuarios %}
+                <tr>
+                    <td colspan="3" stype="text-align:center">Nenhum usuário encontrado</td>
+                </tr>
+                {% endif %}
+            </table>
+    {% endblock main %}
+
